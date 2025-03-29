@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 
 export default function BirthdayWebsite() {
   const [page, setPage] = useState(0);
@@ -76,8 +74,8 @@ export default function BirthdayWebsite() {
         transition={{ duration: 0.5 }}
         className="w-full max-w-md"
       >
-        <Card className="p-5 bg-white text-black rounded-2xl shadow-lg relative overflow-hidden">
-          <CardContent>
+        <div className="card p-5 bg-white text-black rounded-2xl shadow-lg relative overflow-hidden">
+          <div className="card-content">
             <h1 className="text-2xl font-bold mb-4">{pages[page].title}</h1>
             <p className="mb-4" dangerouslySetInnerHTML={{ __html: pages[page].content }}></p>
             {pages[page].quiz && (
@@ -85,19 +83,19 @@ export default function BirthdayWebsite() {
                 <p className="font-semibold">{pages[page].quiz.question}</p>
                 <div className="flex flex-col mt-2">
                   {pages[page].quiz.options.map((option, index) => (
-                    <Button key={index} className="m-1" onClick={() => handleAnswerClick(option)}>
+                    <button key={index} className="m-1 bg-blue-500 text-white px-4 py-2 rounded-lg" onClick={() => handleAnswerClick(option)}>
                       {option}
-                    </Button>
+                    </button>
                   ))}
                 </div>
                 {selectedAnswer && <p className="mt-2 font-bold">{feedback}</p>}
               </div>
             )}
             {page < pages.length - 1 && (
-              <Button className="mt-4" onClick={() => setPage(page + 1)}>Next ➡</Button>
+              <button className="mt-4 bg-green-500 text-white px-4 py-2 rounded-lg" onClick={() => setPage(page + 1)}>Next ➡</button>
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </motion.div>
     </div>
   );
